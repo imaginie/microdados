@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Imaginie - Desempenho ENEM 2014 - </title>
+        <link rel='stylesheet' href='static/imaginie.css' type='text/css' media='all'/>
+        
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    </head>
+    <body>
+
+        <div id="logo">
+            <img src="/static/logo.png">
+        </div>
+
+        <div id="top" align="center">
+            <h1><strong>Desempenho ENEM 2014</strong></h1>
+        </div>
+        </br>
+            
+        <div style="width:900px; margin:0 auto;">
+            
+            <h3><strong>Alunos por intervalo de nota</strong></h3>
+
+            <small>
+                <table style="width:100%;" border="1" align="center">
+                    <tr>
+                        <td></td>
+                        {% for interval in intervals %}
+                            <td align="center">{{ interval|first }} - {{ interval|last }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td align="center"><strong>Redação</strong></td>
+                        {% for students in essay_score_dist %}
+                            <td align="center">{{ students }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td align="center"><strong>Ciências da Natureza</strong></td>
+                        {% for students in score_cn_dist %}
+                            <td align="center">{{ students }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td align="center"><strong>Ciências Humanas</strong></td>
+                        {% for students in score_ch_dist %}
+                            <td align="center">{{ students }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td align="center"><strong>Liguagens e Códigos</strong></td>
+                        {% for students in score_lc_dist %}
+                            <td align="center">{{ students }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td align="center"><strong>Matemática</strong></td>
+                        {% for students in score_mt_dist %}
+                            <td align="center">{{ students }}</td>
+                        {% endfor %}
+                    </tr>
+                </table>
+            </small>
+        </div>
+
+
+
+    </body>
+</html>

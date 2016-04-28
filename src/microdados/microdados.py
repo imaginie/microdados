@@ -19,6 +19,44 @@ def test():
 def index():
     return redirect("/static/nacional.html")
 
+@app.route("/scores")
+def get_score_intervals():
+    conn = db.connect(settings.DB_HOST, settings.DB_USER, 
+        settings.DB_PASSWD, settings.DB_NAME)
+
+    intervals = [(0, 0), (1, 100), (101, 200), (201, 300), (301, 400), 
+                 (401, 500), (501, 600), (601, 700), (701, 800), (801, 900), 
+                 (901, 1000), (1000, 1000)]
+
+    essay_score_dist = []
+    for interval in intervals:
+        count = int(db.get_count_per_score_interval(conn, interval[0], interval[1]))
+        essay_score_dist.append(count)
+
+    score_cn_dist = []
+    for interval in intervals:
+        count = int(db.get_count_per_score_interval(conn, interval[0], interval[1], score_type='NOTA_CN'))
+        score_cn_dist.append(count)
+
+    score_ch_dist = []
+    for interval in intervals:
+        count = int(db.get_count_per_score_interval(conn, interval[0], interval[1], score_type='NOTA_CH'))
+        score_ch_dist.append(count)
+
+    score_lc_dist = []
+    for interval in intervals:
+        count = int(db.get_count_per_score_interval(conn, interval[0], interval[1], score_type='NOTA_LC'))
+        score_lc_dist.append(count)
+   
+    score_mt_dist = []
+    for interval in intervals:
+        count = int(db.get_count_per_score_interval(conn, interval[0], interval[1], score_type='NOTA_MT'))
+        score_mt_dist.append(count)
+
+    return render_template('scores.html', **locals())
+
+
+
 @app.route('/<school_id>')
 def get_school_info(school_id):
     conn = db.connect(settings.DB_HOST, settings.DB_USER, 
@@ -80,5 +118,5 @@ def get_school_info(school_id):
 
 
 if __name__ == "__main__":
-    app.debug = False
+    app.debug = True
     app.run()

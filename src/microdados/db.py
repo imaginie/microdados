@@ -114,13 +114,17 @@ def get_score_avg_sex(conn, school_id=None):
 	return result
 
 
-def get_count_per_score_interval(conn, start_score, end_score, school_id=None):
+def get_count_per_score_interval(conn, start_score, end_score, school_id=None, 
+	score_type='NU_NOTA_REDACAO', uf=None):
+
 	cursor = conn.cursor()
 	query = "SELECT COUNT(*) FROM `TABLE 1` "\
-				  "WHERE NU_NOTA_REDACAO BETWEEN %d AND %d" \
-				  " AND IN_STATUS_REDACAO != 6" % (start_score, end_score)
+				  "WHERE %s BETWEEN %d AND %d" \
+				  " AND IN_STATUS_REDACAO != 6" % (score_type, start_score, end_score)
 	if school_id:
 		query += " AND COD_ESCOLA = '%s'" % school_id
+	if uf:
+		query += " AND UF = '%s'" % uf
 	cursor.execute(query)
 
 	return cursor.fetchone()[0]
