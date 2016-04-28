@@ -21,6 +21,9 @@ def index():
 
 @app.route("/scores")
 def get_score_intervals():
+
+    return redirect("/static/score_dist.html")
+
     conn = db.connect(settings.DB_HOST, settings.DB_USER, 
         settings.DB_PASSWD, settings.DB_NAME)
 
