@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Imaginie - Desempenho Nacional ENEM 2014</title>
+        <link rel='stylesheet' href='/static/imaginie.css' type='text/css' media='all' />
+
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+        <script type="text/javascript">
+            google.load("visualization", "1", {packages:["corechart"]});
+            
+            google.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                  ['notas', 'ocorrências', { role: 'annotation' }],
+                  ['0', 318340, '318340'],
+                  ['1-99', 3620, '3620'],
+                  ['100-199', 54051, '54051'],
+                  ['200-299', 465468, '465468'],
+                  ['300-399', 968682, '968682'],
+                  ['400-499', 1216630, '1216630'],
+                  ['500-599', 1422114, '1422114'],
+                  ['600-699', 932576, '932576'],
+                  ['700-799', 395959, '395959'],
+                  ['800-899', 156239, '156239'],
+                  ['900-999', 48879, '48879'], //49129
+                  ['1000', 250, '250']
+                ]);
+                var options = {
+                    title: "Alunos por intervalo de Nota ENEM 2014",
+                    width: 720,
+                    height: 435,
+                    bar: {groupWidth: '95%', color: '#44B8B7'},
+                    legend: { position: 'none' },
+                    titlePosition: 'none',
+                    chartArea: {width: '80%', height: '70%', top: '10%', bottom:'12%'},
+                    colors: ['#44B8B7']
+                };
+                var chart = new google.visualization.ColumnChart(document.getElementById('score-intervals-chart'));
+                chart.draw(data, options);
+            }
+        </script>
+
+        <script type="text/javascript">
+            google.load("visualization", "1", {packages:['corechart', 'bar']});
+            
+            google.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                  ['estado', 'nota médi', {role: 'annotation'}],
+                  ['TO', 415.2, '415.2'],
+                  ['AC', 416.3, '416.3'],
+                  ['MA', 418.2, '418.2'],
+                  ['RO', 425.5, '425.5'],
+                  ['DF', 428.8, '428.8'],
+                  ['PI', 429.8, '429.8'],
+                  ['AP', 435.6, '435.6'],
+                  ['CE', 439.1, '439.1'],
+                  ['AM', 442.3, '442.3'],
+                  ['PA', 447.1, '447.1'],
+                  ['MT', 451.0, '451.0'],
+                  ['BA', 457.0, '457.0'],
+                  ['RR', 457.6, '457.6'],
+                  ['AL', 463.1, '463.1'],
+                  ['PE', 465.7, '465.7'],
+                  ['RN', 466.3, '466.3'],
+                  ['SE', 467.3, '467.3'],
+                  ['ES', 467.9, '467.9'],
+                  ['GO', 469.4, '469.4'],
+                  ['PB', 470.9, '470.9'],
+                  ['MS', 473.9, '473.9'],
+                  ['PR', 499.7, '499.7'],
+                  ['MG', 501.5, '501.5'],
+                  ['RS', 501.9, '501.9'],
+                  ['SC', 512.0, '512.0'],
+                  ['SP', 515.1, '515.1'],
+                  ['RJ', 527.9, '527.9']
+                ]);
+                var options = {
+                    title: "Alunos por intervalo de Nota ENEM 2014",
+                    width: 700,
+                    height: 494,
+                    bar: {groupWidth: '75%', color: '#44B8B7'},
+                    legend: { position: 'none' },
+                    titlePosition: 'none',
+                    chartArea: {width: '85%', height: '80%', top: '5%', bottom: '10%'},
+                    colors: ['#44B8B7'],
+                    hAxis: { 
+                        viewWindowMode:'explicit',
+                        viewWindow: {max:540}
+                    }
+                };
+                var chart = new google.visualization.BarChart(document.getElementById('score-uf-chart'));
+                chart.draw(data, options);
+            }
+        </script>
+	</head>
+	<body>
+        <div id="logo">
+            <img src="/static/logo.png">
+        </div>
+    
+        <div id="top" align="center">
+            <h1><strong>Desempenho Nacional ENEM 2014</strong></h1>
+		</div>
+		</br>
+			
+		<div style="width:800px; margin:0 auto;">
+
+            <img style="float:right; position:relative; padding-left:20px;" src="/static/imaginie-professores-mac.png" alt="Imaginie"/>
+        
+            <p style="text-align: justify;">
+                A Imaginie oferece soluções tecnológicas criadas especialmente para atender as demandas das escolas. Nosso objetivo é <strong>facilitar o trabalho da sua escola na correção de redações.</strong> Através da plataforma Imaginie, sua escola ganha <strong>ferramentas estratégicas</strong> para o preparo dos alunos para a redação do ENEM e <strong>inteligência pedagógica</strong> com o acompanhamento do desempenho dos alunos e turmas, relatórios detalhados e comparação de desempenho por região ou nacionalmente.
+            </p>
+            
+            <p style="text-align: justify;">
+                Sabendo que a nota na prova de Redação é derterminante para o sucesso dos seus alunos, oferecemos ferramentas para que Escola e Aluno possam acompanhar seu desempenho em tempo real.
+            </p>
+
+            <p style="text-align: justify;">
+                Veja abaixo um resumo do Relatório de Desempenho Nacional, no ENEM 2014:
+            </p>
+            </br>
+
+            <h3>
+                Total de alunos inscritos: &nbsp;&nbsp;8.722.248<br>
+                Total de alunos ausentes:  &nbsp;2.739.440
+            </h3>
+		
+            <table id="media-geral">
+                <tr><td style="width:270px;" ><strong>Média Geral:</strong></td><td>471.5</td></tr>
+                <tr><td><strong>Média por Gênero:<br><br>&nbsp;</strong></td><td>
+                479.6 <img style="float:rigth;" src="/static/gender_f.png" alt="F"/><br> 
+                460.4 <img style="float:rigth;" src="/static/gender_m.png" alt="M"/><br>&nbsp;			
+    			</td></tr>
+                <tr><td><strong>Médias por Critério:</strong></td><td></td></tr>
+                <tr><td>&nbsp;&nbsp;&nbsp;Normal culta:</td><td>109.8</td></tr>
+			    <tr><td>&nbsp;&nbsp;&nbsp;Adequação ao tema/gênero:</td><td>97.6</td></tr>
+			    <tr><td>&nbsp;&nbsp;&nbsp;Argumentação:</td><td>93.2</td></tr>
+			    <tr><td>&nbsp;&nbsp;&nbsp;Coesão textual:</td><td>103.8</td></tr>
+			    <tr><td>&nbsp;&nbsp;&nbsp;Propostas de intervenção:</td><td>67.1</td></tr>
+             </table>
+            </br></br>
+            <div style="page-break-after:always;"></div>
+            <h3>
+               <strong> Alunos por Intervalo de Nota - Redação ENEM 2014</strong>
+        		<div align="center">
+                    <div id="score-intervals-chart"></div>
+        		</div>
+            </h3>
+            <h3>
+                <strong>Nota Média por Estado - Redação ENEM 2014</strong>
+                <div align="center">
+                    <div id="score-uf-chart"></div>
+                </div>
+            </h3>
+		
+        </div>
+    
+        <div align="center" id="footer">
+            <h4><span>Agende uma apresentação em sua escola!<br>(31) 3517-1717 | contato@imaginie.com | www.imaginie.com</span></h4>
+        </div>
+
+
+	</body>
+</html>
+

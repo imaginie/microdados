@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Imaginie - Desempenho ENEM 2014 - </title>
+        <link rel='stylesheet' href='static/imaginie.css' type='text/css' media='all'/>
+        
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+        <script type="text/javascript">
+            google.load("visualization", "1", {packages:["corechart"]});
+            
+            google.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable({{ score_interval_data|safe }});
+                var options = {
+                    title: "Alunos por intervalo de Nota ENEM 2014",
+                    width: 820,
+                    height: 450,
+                    bar: {groupWidth: '95%', color: '#44B8B7'},
+                    legend: { position: 'none' },
+                    titlePosition: 'none',
+                    chartArea: {width: '75%', height: '65%', top: '10%', bottom:'15%'},
+                    colors: ['#44B8B7']
+                };
+                var chart = new google.visualization.ColumnChart(document.getElementById('score-intervals-chart'));
+                chart.draw(data, options);
+            }
+        </script>
+
+	</head>
+	<body>
+		{% if total_students %}
+			
+            <div id="logo">
+                <img src="/static/logo.png">
+            </div>
+        
+            <div id="top" align="center">
+                <h1><strong>Desempenho ENEM 2014</strong></h1>
+				<h2>Código da Escola: {{ school_id }}</br>{{ school_city }} - {{ school_uf }}</h2>
+			</div>
+			</br>
+				
+			<div style="width:800px; margin:0 auto;">
+		        <img style="float:right; position:relative; padding-left:20px;" src="/static/imaginie-professores-mac.png" alt="Imaginie"/>
+                <p style="text-align: justify;">
+                    A Imaginie oferece soluções tecnológicas criadas especialmente para atender as demandas das escolas. Nosso objetivo é <strong>facilitar o trabalho da sua escola na correção de redações.</strong> Através da plataforma Imaginie, sua escola ganha <strong>ferramentas estratégicas</strong> para o preparo dos alunos para a redação do ENEM e <strong>inteligência pedagógica</strong> com o acompanhamento do desempenho dos alunos e turmas, relatórios detalhados e comparação de desempenho por região ou nacionalmente.
+                </p>
+                <p style="text-align: justify;">
+                    Sabendo que a nota na prova de Redação é determinante para o sucesso dos seus alunos, oferecemos ferramentas para que Escola e Aluno possam acompanhar seu desempenho em tempo real.
+                </p>
+                <p style="text-align: justify;">
+                    Veja abaixo um resumo do Relatório de Desempenho da sua Escola (Cód.: {{ school_id }}), no ENEM 2014:
+                </p>
+                 
+                </br>
+                <h3>
+				Total de alunos inscritos: {{ total_students }}</br>
+				Total de alunos ausentes: {{ total_absents}}
+				</h3>
+				
+				
+                <table id="media-geral">
+                    <tr><td style="width:220px;"><strong>Média da Escola:</strong></td><td>{{ avg_total|round(1) }}</td></tr>
+                    <tr><td><strong>Média por Gênero:<br><br>&nbsp;</strong></td><td>{% for score in score_avg_sex %}
+					{% if score.sex == "F" %}
+						{{ score.avg|round(1) }} <img style="float:rigth;" src="/static/gender_f.png" alt="F"/> <br> 
+					{% else %}
+						{{ score.avg|round(1) }} <img style="float:rigth;" src="/static/gender_m.png" alt="M"/><br>&nbsp;
+					{% endif %}
+				{% endfor %}</td></tr>
+                    <tr><td><strong>Média do Município:</strong></td><td>{{ city_score_avg|round(1) }}</td></tr>
+                    <tr><td><strong>Média do Estado:</strong></td><td>{{ uf_score_avg|round(1) }}</td></tr>
+                    <tr><td><strong>Média Nacional:</strong></td><td>511.6</td></tr>
+                 </table>							
+                
+                </br>&nbsp;</br>&nbsp;</br>&nbsp;</br>&nbsp;</br>
+
+                <div align="center" id="footer">
+                    <h4>(31) 3517-1717 | contato@imaginie.com<br>www.imaginie.com</span></h4>
+                </div>
+                </br>&nbsp;</br>&nbsp;
+                <div style="page-break-after:always;"></div>
+                <!--<div id="logo">
+                    <img src="/static/logo.png">
+                </div>-->
+				<h3><strong>Desempenho da Escola, por Competência</strong></h3>
+
+				 <table id="criterios">
+					  <tr>
+					    <td id="criterio"><strong>Critério</strong></td>
+					    <td id="media"><strong>Média da Escola</strong></td>
+					    <td id="comentario"><strong>Comentário</strong></td>
+					  </tr>
+					  <tr>
+					    <td id="criterio1">Norma Culta</td>
+					    <td id="media1">{{ avg_score1|round(1) }} / 200</td>
+					    <td id="comentario1">
+					    	{% if avg_score1|round(1) == 0 %}
+								Demonstra desconhecimento da modalidade escrita formal da Língua Portuguesa.
+							{% elif avg_score1|round(1) <= 40 %}
+								Demonstra domínio precário da modalidade escrita formal da Língua Portuguesa, de forma sistemática, com diversificados e frequentes desvios gramaticais, de escolha de registro e de convenções da escrita.
+                    		{% elif avg_score1|round(1) <= 80 %}
+								Demonstra domínio insuficiente da modalidade escrita formal da Língua Portuguesa, com muitos desvios gramaticais, de escolha de registro e de convenções da escrita.
+							{% elif avg_score1|round(1) <= 120 %}
+								Demonstra domínio mediano da modalidade escrita formal da Língua Portuguesa e de escolha de registro, com alguns desvios gramaticais e de convenções da escrita.
+							{% elif avg_score1|round(1) <= 160 %}
+								Demonstra bom domínio da modalidade escrita formal da Língua Portuguesa e de escolha de registro, com poucos desvios gramaticais e de convenções da escrita.
+							{% elif avg_score1|round(1) > 160 %}
+								Demonstra excelente domínio da modalidade escrita formal da Língua Portuguesa e de escolha de registro. Desvios gramaticais ou de convenções da escrita serão aceitos somente como excepcionalidade e quando não caracterizem reincidência.
+                    		{% else %} 
+                    			- 
+				   			{% endif %}
+					    </td>
+					  </tr>
+					  <tr>
+					    <td id="criterio">Adequação ao Tema</td>
+					    <td id="media">{{ avg_score2|round(1) }} / 200</td>
+					    <td id="comentario">
+					    	{% if avg_score2|round(1) == 0 %}
+								Fuga ao tema/não atendimento à estrutura dissertativo- argumentativa.
+							{% elif avg_score2|round(1) <= 40 %}
+								Apresenta o assunto, tangenciando o tema, ou demonstra domínio precário do texto dissertativo-argumentativo, com traços constantes de outros tipos textuais.
+                    		{% elif avg_score2|round(1) <= 80 %}
+								Desenvolve o tema recorrendo à cópia de trechos dos textos motivadores ou apresenta domínio insuficiente do texto dissertativo-argumentativo, não atendendo à estrutura com proposição, argumentação e conclusão.
+							{% elif avg_score2|round(1) <= 120 %}
+								Desenvolve o tema por meio de argumentação previsível e apresenta domínio mediano do texto dissertativo- argumentativo, com proposição, argumentação e conclusão.
+							{% elif avg_score2|round(1) <= 160 %}
+								Desenvolve o tema por meio de argumentação consistente e apresenta bom domínio do texto dissertativo-argumentativo, com proposição, argumentação e conclusão.
+							{% elif avg_score2|round(1) > 160 %}
+								Desenvolve o tema por meio de argumentação consistente, a partir de um repertório sociocultural produtivo, e apresenta excelente domínio do texto dissertativo-argumentativo.
+                    		{% else %} 
+                    			- 
+				   			{% endif %}
+					    </td>
+					  </tr>
+					  <tr>
+					    <td id="criterio1">Argumentação</td>
+					    <td id="media1">{{ avg_score3|round(1) }} / 200</td>
+					    <td id="comentario1">
+					    	{% if avg_score3|round(1) == 0 %}
+								Apresenta informações, fatos e opiniões não relacionados ao tema e sem defesa de um ponto de vista.
+							{% elif avg_score3|round(1) <= 40 %}
+								Apresenta informações, fatos e opiniões pouco relacionados ao tema ou incoerentes e sem defesa de um ponto de vista.
+                    		{% elif avg_score3|round(1) <= 80 %}
+								Apresenta informações, fatos e opiniões relacionados ao tema, mas desorganizados ou contraditórios e limitados aos argumentos dos textos motivadores, em defesa de um ponto de vista.
+							{% elif avg_score3|round(1) <= 120 %}
+								Apresenta informações, fatos e opiniões relacionados ao tema, limitados aos argumentos dos textos motivadores e pouco organizados, em defesa de um ponto de vista.
+							{% elif avg_score3|round(1) <= 160 %}
+								Apresenta informações, fatos e opiniões relacionados ao tema, de forma organizada, com indícios de autoria, em defesa de um ponto de vista.
+							{% elif avg_score3|round(1) > 160 %}
+								Apresenta informações, fatos e opiniões relacionados ao tema proposto, de forma consistente e organizada, configurando autoria, em defesa de um ponto de vista.
+                    		{% else %} 
+                    			- 
+				   			{% endif %}
+					    </td>
+					  </tr>
+					  <tr>
+					    <td id="criterio">Coesão Textual</td>
+					    <td id="media">{{ avg_score4|round(1) }} / 200</td>
+					    <td id="comentario">
+					    	{% if avg_score4|round(1) == 0 %}
+								Ausência de marcas de articulação, resultando em fragmentação das ideias.
+							{% elif avg_score4|round(1) <= 40 %}
+								Articula as partes do texto de forma precária.
+                    		{% elif avg_score4|round(1) <= 80 %}
+								Articula as partes do texto, de forma insuficiente, com muitas inadequações e apresenta repertório limitado de recursos coesivos.
+							{% elif avg_score4|round(1) <= 120 %}
+								Articula as partes do texto, de forma mediana, com inadequações e apresenta repertório pouco diversificado de recursos coesivos.
+							{% elif avg_score4|round(1) <= 160 %}
+								Articula as partes do texto com poucas inadequações e apresenta repertório diversificado de recursos coesivos.
+							{% elif avg_score4|round(1) > 160 %}
+								Articula bem as partes do texto e apresenta repertório diversificado de recursos coesivos.
+                    		{% else %} 
+                    			- 
+				   			{% endif %}
+					    </td>
+					  </tr>
+					  <tr>
+					    <td id="criterio1">Proposta de Intervenção</td>
+					    <td id="media1">{{ avg_score5|round(1) }} / 200</td>
+					    <td id="comentario1">
+					    	{% if avg_score5|round(1) == 0 %}
+								Não apresenta proposta de intervenção ou apresenta proposta não relacionada ao tema ou ao assunto.
+							{% elif avg_score5|round(1) <= 40 %}
+								Apresenta proposta de intervenção vaga, precária ou relacionada apenas ao assunto.
+                    		{% elif avg_score5|round(1) <= 80 %}
+								Elabora, de forma insuficiente, proposta de intervenção relacionada ao tema ou não articulada com a discussão desenvolvida no texto.
+							{% elif avg_score5|round(1) <= 120 %}
+								Elabora, de forma mediana, proposta de intervenção relacionada ao tema e articulada à discussão desenvolvida no texto.
+							{% elif avg_score5|round(1) <= 160 %}
+								Elabora bem proposta de intervenção relacionada ao tema e articulada à discussão desenvolvida no texto.
+							{% elif avg_score5|round(1) > 160 %}
+								Elabora muito bem proposta de intervenção, detalhada, relacionada ao tema e articulada à discussão desenvolvida no texto.
+                    		{% else %} 
+                    			- 
+				   			{% endif %}
+					    </td>
+					  </tr>
+				    </table>
+                    <p>* Nota máxima por critério: 200</p>
+                    </br>
+
+    				<div align="center">
+    					<img style="max-height: 400px;" src="{{ students_per_score_img }}">
+    				</div>
+
+                    <h3>
+                        <strong>Alunos por Intervalo de Nota - Redação ENEM 20</strong>
+                        <div align="center">
+                            <div id="score-intervals-chart"></div>
+                        </div>
+                    </h3>
+
+				</div>
+		{% else %}
+			Nenhum aluno associado a escola {{ school_id }}.
+		{% endif %}
+
+        <div align="center" id="footer">
+            <h4><span>Agende uma apresentação em sua escola!<br>(31) 3517-1717 | contato@imaginie.com | www.imaginie.com</span></h4>
+        </div>
+	</body>
+</html>
+

@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family:Lato, 'Helvetica Neue', Helvetica, sans-serif;
+    font-style:normal;
+    }
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family:Lato, 'Helvetica Neue', Helvetica, sans-serif;
+    font-style:normal;
+    font-weight:300;
+
+}
+
+h1 {
+
+    font-weight:700;
+    font-size: 40px;
+
+}
+
+h4 {
+
+    font-weight:300;
+    font-size: 22px;
+    color:#FFFFFF;
+}
+
+#top {
+    color:#FFFFFF;
+    background-color:#44B8B7;
+    padding: 5px 0;
+    width:100%;
+    bordeer: 0px;
+}
+
+#logo {
+    min-height:100px;
+    max-width:1200px;
+    width:88%;
+    padding-top: 10px;
+    margin: 0 auto;
+}
+
+#footer {
+    background-color:rgb(61, 83, 113);
+    border-top-color:#D4D4D4;
+    border-top-style:solid;
+    border-top-width:1px;
+    box-shadow:rgba(0, 0, 0, 0.0745098) 0 -0.125em 0.25em 0;
+    position:relative;
+    padding: 1px 0;
+}
+
+#media-geral {
+    width:100%;
+    background-color: rgba(68, 184, 183, 0.3);
+    border-color:#D4D4D4;
+    border-style:solid;
+    border:1px;
+    box-shadow:rgba(0, 0, 0, 0.0745098) 0 -0.125em 0.25em 0;
+    position:relative;
+    padding: 10px;
+}
+
+#criterios {
+    width:100%;
+    padding: 0px;
+    border:0px;
+}
+
+#criterio {
+    border:0px;
+    width:190px;
+    padding: 8px 0 8px 10px;
+}
+
+#media {
+    border:0px;
+    width:140px;
+    text-align: center;
+    padding: 8px 0;
+}
+
+#comentario {
+    border:0px;
+    padding: 8px 10px 8px 10px;
+}
+
+#criterio1 {
+    background-color: rgba(68, 184, 183, 0.3);
+    border:0px;
+    width:190px;
+    padding: 8px 0 8px 10px;
+}
+
+#media1 {
+    background-color: rgba(68, 184, 183, 0.3);
+    border:0px;
+    width:140px;
+    text-align: center;
+    padding: 8px 0;
+}
+
+#comentario1 {
+    background-color: rgba(68, 184, 183, 0.3);
+    border:0px;
+    padding: 8px 10px 8px 10px;
+}
