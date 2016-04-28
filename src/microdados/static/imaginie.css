@@ -108,7 +108,3 @@ h4 {
     padding: 8px 10px 8px 10px;
 }
 
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
