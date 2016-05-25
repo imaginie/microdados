@@ -13,14 +13,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 h1 {
-
     font-weight:700;
     font-size: 40px;
 
 }
 
 h4 {
-
     font-weight:300;
     font-size: 22px;
     color:#FFFFFF;
@@ -29,9 +27,10 @@ h4 {
 #top {
     color:#FFFFFF;
     background-color:#44B8B7;
-    padding: 5px 0;
+    padding: 8px 0;
     width:100%;
-    bordeer: 0px;
+    border: 0px;
+    margin: 0;
 }
 
 #logo {
@@ -44,21 +43,13 @@ h4 {
 
 #footer {
     background-color:rgb(61, 83, 113);
-    border-top-color:#D4D4D4;
-    border-top-style:solid;
-    border-top-width:1px;
-    box-shadow:rgba(0, 0, 0, 0.0745098) 0 -0.125em 0.25em 0;
     position:relative;
     padding: 1px 0;
 }
 
 #media-geral {
     width:100%;
-    background-color: rgba(68, 184, 183, 0.3);
-    border-color:#D4D4D4;
-    border-style:solid;
-    border:1px;
-    box-shadow:rgba(0, 0, 0, 0.0745098) 0 -0.125em 0.25em 0;
+    background-color: #8ae6e6; 
     position:relative;
     padding: 10px;
 }
